@@ -5,6 +5,7 @@
 Pg::RoundRobin - a simple round robin connection for PostgreSQL on top of DBIish
 
 =head1 SYNOPSIS
+
     use v6;
     use Pg::RoundRobin;
 
@@ -44,8 +45,11 @@ Pg::RoundRobin - a simple round robin connection for PostgreSQL on top of DBIish
 
 This is a simple implementation of round robin failover connection on top of DBIish.
 It will scan and group primary and secondary node accordingly at init.
+
 =head1 DBIish CLASSES and ROLES
+
 =head2 Pg::RoundRobin
+
 The C<Pg::RoundRobin> class exists mainly to provide the F<init> method,
 which acts as a constructor for database connections.
 F<primary> will return DB Handle for primary node

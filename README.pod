@@ -53,9 +53,9 @@ It will scan and group primary and secondary node accordingly at init.
 The C<Pg::RoundRobin> class exists mainly to provide the F<init> method,
 which acts as a constructor for database connections.
 
-F<primary> will return DB Handle for primary node.
+Method F<primary> will return DB Handle for primary node.
 
-F<secondary> will return DB Handle for secondary node.
+Method F<secondary> will return DB Handle for secondary node.
 
 =head1 LICENSE
 

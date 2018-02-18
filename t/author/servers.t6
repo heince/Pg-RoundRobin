@@ -1,0 +1,59 @@
+#
+#===============================================================================
+#
+#         FILE: servers.t6
+#
+#  DESCRIPTION: 
+#
+#        FILES: ---
+#         BUGS: ---
+#        NOTES: ---
+#       AUTHOR: Heince Kurniawan (), heince.kurniawan@itgroupinc.asia
+# ORGANIZATION: IT Group Indonesia
+#      VERSION: 1.0
+#      CREATED: 02/17/18 22:17:51
+#     REVISION: ---
+#===============================================================================
+use v6;
+use Test;
+use lib ~$*PROGRAM.sibling: '../../lib';
+use Pg::RoundRobin;
+
+plan 1;
+use-ok 'Pg::RoundRobin';
+
+my $failover = Pg::RoundRobin.new(  
+                                 prefer_secondary => True,
+                                 dbservers => 
+                                    (
+                                        [ :host<127.0.0.1>, :port<5432>, :database<heince>, :user<heince> ] ,
+                                        [ :host<127.0.0.1>, :port<5433>, :database<heince>, :user<heince> ]
+                                    )
+                                );
+
+$failover.init;
+
+OUTER1: while True
+{
+    #my $dbh = $failover.primary();
+    my $dbh = $failover.secondary();
+    next OUTER1 if $dbh eqv (Any);
+
+    my $sth = $dbh.prepare("select * from test");
+    $sth.execute();
+
+
+    my @rows = $sth.allrows();
+    $sth.finish();
+    $dbh.dispose();
+
+    for @rows -> ($id, $name)
+    {
+        say "id: $id, name: $name";
+    }
+
+    sleep 1;
+}
+done-testing;
+
+

@@ -1,0 +1,30 @@
+#
+#===============================================================================
+#
+#         FILE: 02-host.t6
+#
+#  DESCRIPTION: 
+#
+#        FILES: ---
+#         BUGS: ---
+#        NOTES: ---
+#       AUTHOR: Heince Kurniawan (), heince.kurniawan@itgroupinc.asia
+# ORGANIZATION: IT Group Indonesia
+#      VERSION: 1.0
+#      CREATED: 02/17/18 18:41:39
+#     REVISION: ---
+#===============================================================================
+use v6;
+use Test;
+use lib ~$*PROGRAM.sibling: '../lib';
+
+plan 2;
+constant module = 'Pg::RoundRobin::Host';
+use-ok module;
+use ::(module);
+
+can-ok ::(module)::Candidate, 'new', 'loading Pg::RoundRobin::Host class';
+
+done-testing;
+
+

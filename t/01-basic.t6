@@ -1,0 +1,32 @@
+#
+#===============================================================================
+#
+#         FILE: 01-basic.t6
+#
+#  DESCRIPTION: 
+#
+#        FILES: ---
+#         BUGS: ---
+#        NOTES: ---
+#       AUTHOR: Heince Kurniawan (), heince.kurniawan@itgroupinc.asia
+# ORGANIZATION: IT Group Indonesia
+#      VERSION: 1.0
+#      CREATED: 02/17/18 17:17:56
+#     REVISION: ---
+#===============================================================================
+use v6;
+use Test;
+use lib ~$*PROGRAM.sibling: '../lib';
+
+plan 3;
+
+constant module = 'Pg::RoundRobin';
+use-ok module;
+use ::(module);
+
+can-ok ::(module), 'new', 'loading Pg::RoundRobin class';
+is ::(module).for_testing(), True, 'testing method';
+
+done-testing;
+
+

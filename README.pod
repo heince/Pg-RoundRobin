@@ -1,4 +1,9 @@
-=begin pod
+=encoding utf-8
+
+=head1 NAME
+
+Pg::RoundRobin - a simple round robin connection for PostgreSQL on top of DBIish
+
 =head1 SYNOPSIS
     use v6;
     use Pg::RoundRobin;
@@ -70,4 +75,3 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-=end pod
